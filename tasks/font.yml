@@ -1,0 +1,17 @@
+- name: ensure fonts directory
+  file:
+    path: "/usr/share/fonts/truetype"
+    state: directory
+
+- name: Hack exists
+  shell: "ls /usr/share/fonts/truetype/Hack"
+  register: hack_exists
+  ignore_errors: yes
+
+- name: Download Hack Nerd Font
+  when: hack_exists is failed
+  become: true
+  ansible.builtin.unarchive:
+    src: "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip"
+    dest: "/usr/share/fonts/truetype/"
+    remote_src: yes

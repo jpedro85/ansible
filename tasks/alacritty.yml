@@ -1,0 +1,9 @@
+- name: Dependicies for alacritty
+  apt:
+    name: ["libfreetype6-dev", "libfontconfig1-dev", "libxcb-xfixes0-dev", "libxkbcommon-dev", "python3-dev", "libx11-xcb-dev"]
+
+- name: Download alacritty
+  git:
+    repo: 'https://github.com/jwilm/alacritty.git'
+    dest: "{{ lookup('env','HOME') }}/alacritty"
+    force: true
