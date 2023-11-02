@@ -1,4 +1,5 @@
 - name: Dependicies for alacritty
+  become: true
   apt:
     name: ["libfreetype6-dev", "libfontconfig1-dev", "libxcb-xfixes0-dev", "libxkbcommon-dev", "python3-dev", "libx11-xcb-dev"]
 

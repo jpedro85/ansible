@@ -4,14 +4,22 @@
     state: directory
 
 - name: Hack exists
+  become: true
   shell: "ls /usr/share/fonts/truetype/Hack"
   register: hack_exists
   ignore_errors: yes
+
+- name: Creating Directory
+  become: true
+  when: hack_exists is failed
+  file:
+    path: /usr/share/fonts/truetype/Hack
+    state: directory
 
 - name: Download Hack Nerd Font
   when: hack_exists is failed
   become: true
   ansible.builtin.unarchive:
     src: "https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Hack.zip"
-    dest: "/usr/share/fonts/truetype/"
+    dest: "/usr/share/fonts/truetype/Hack"
     remote_src: yes

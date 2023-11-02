@@ -7,7 +7,7 @@
   when: cargo_exists is failed
   get_url:
     url: https://sh.rustup.rs
-    dest: /home/jpedro/temp/sh.rustup.rs
+    dest: /home/jpedro/.ansible/tmp/sh.rustup.rs
     mode: '0755'
     force: 'yes'
   tags:
@@ -15,6 +15,6 @@
 
 - name: Install Rust/Cargo
   when: cargo_exists is failed
-  shell: /home/jpedro/temp/sh.rustup.rs -y
+  shell: /home/jpedro/.ansible/tmp/sh.rustup.rs -y
   tags:
     -rust
